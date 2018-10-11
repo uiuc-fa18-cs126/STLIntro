@@ -7,7 +7,7 @@ using std::endl;
 
 void printGrades(std::map<std::string,GradeRecord>&gradebook) {
     for(auto record : gradebook) {
-        std::cout << record.first << '\t' << record.second.getGrade() << std::endl;
+        std::cout << record.first << '\t' << record.second << std::endl;
     }
 }
 
@@ -21,10 +21,15 @@ void addGrade(std::map<std::string,GradeRecord>&gradebook) {
     gradebook[student_name] = newGrade;
 }
 
-int GradeRecord::getGrade() {
+int GradeRecord::getGrade() const {
     return grade;
 }
 
 void GradeRecord::setGrade(int score) {
     grade = score;
+}
+
+std::ostream& operator<<(std::ostream& os, const GradeRecord &record) {
+    os << "Grade = " << record.getGrade();
+    return os;
 }
